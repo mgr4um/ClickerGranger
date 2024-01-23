@@ -1,0 +1,72 @@
+
+local puntos = 0
+local incremento = 1
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+end
+
+--function update(self)
+	--gestionar_power_ups()
+--end
+
+local function incrementar_puntos()
+	puntos = puntos + incremento
+	print("Puntos:", puntos)
+end
+
+local function incrementar_puntos_mult()
+	incremento = incremento + 1
+	print("Incremento:", incremento)
+end
+
+function on_input(self, action_id, action)
+
+	if action_id == hash("touch") and action.pressed then
+		local x, y = action.x, action.y
+		
+		local farmer_position = go.get_world_position("/farmer#sprite")
+		local farmer_size = go.get("#sprite", "size")
+
+		local enciam_position = go.get_world_position("/enciam#enciam")
+		local enciam_size = go.get("/enciam#enciam", "size")
+		
+		print(farmer_size)
+		print(enciam_position)
+
+		if is_point_inside_farmer(x, y, farmer_position, farmer_size) then
+			incrementar_puntos()
+		end
+
+		if is_point_inside_enciam(x, y, enciam_position, enciam_size) then
+			incrementar_puntos_mult()
+		end
+	end
+end
+
+--local function gestionar_power_ups()
+	--local enciam_sprite = "/enciam#enciam"
+	--if puntos > 10 then
+		--sprite.set_constant(enciam_sprite, "tint", vmath.vector4(1, 1, 1, 1))
+	--else
+		--sprite.set_constant(enciam_sprite, "tint", vmath.vector4(1, 1, 1, 0))
+	--end
+--end
+
+function is_point_inside_farmer(px, py, rect_position, rect_size)
+	local rect_left = rect_position.x - rect_size.x * 0.5
+	local rect_right = rect_position.x + rect_size.x * 0.5
+	local rect_top = rect_position.y + rect_size.y * 0.5
+	local rect_bottom = rect_position.y - rect_size.y * 0.5
+
+	return px >= rect_left and px <= rect_right and py >= rect_bottom and py <= rect_top
+end
+
+function is_point_inside_enciam(px_e, py_e, rect_position_e, rect_size_e)
+	local rect_left_e = rect_position_e.x - rect_size_e.x * 0.5
+	local rect_right_e = rect_position_e.x + rect_size_e.x * 0.5
+	local rect_top_e = rect_position_e.y + rect_size_e.y * 0.5
+	local rect_bottom_e = rect_position_e.y - rect_size_e.y * 0.5
+
+	return px_e >= rect_left_e and px_e <= rect_right_e and py_e >= rect_bottom_e and py_e <= rect_top_e
+end

@@ -2,7 +2,6 @@ name: "main"
 scale_along_z: 0
 embedded_instances {
   id: "Central"
-  children: "enciam"
   children: "farmer"
   children: "pastanaga"
   data: "components {\n"
@@ -41,18 +40,13 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "enciam"
-  data: "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/Assets/Verdura1.atlas\\\"\\n"
-  "default_animation: \\\"bok-choy-asian-vegetable-cartoon-drawing-png\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
-  "\"\n"
+  id: "farmer"
+  data: "components {\n"
+  "  id: \"script\"\n"
+  "  component: \"/main/script.script\"\n"
   "  position {\n"
-  "    x: 166.0\n"
-  "    y: 77.0\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -61,33 +55,10 @@ embedded_instances {
   "    z: 0.0\n"
   "    w: 1.0\n"
   "  }\n"
-  "  scale {\n"
-  "    x: 0.0288\n"
-  "    y: 0.0288\n"
-  "    z: 0.0288\n"
+  "  property_decls {\n"
   "  }\n"
   "}\n"
-  ""
-  position {
-    x: 490.0
-    y: 303.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-embedded_instances {
-  id: "farmer"
-  data: "embedded_components {\n"
+  "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/Assets/Farmer.atlas\\\"\\n"
@@ -98,6 +69,54 @@ embedded_instances {
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "  z: 0.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "color {\\n"
+  "  x: 1.0\\n"
+  "  y: 1.0\\n"
+  "  z: 1.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "leading: 1.0\\n"
+  "tracking: 0.0\\n"
+  "pivot: PIVOT_CENTER\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "line_break: false\\n"
+  "text: \\\"Label\\\"\\n"
+  "font: \\\"/builtins/fonts/system_font.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 179.0\n"
+  "    y: 99.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -136,8 +155,8 @@ embedded_instances {
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
   "  position {\n"
-  "    x: 655.0\n"
-  "    y: 163.0\n"
+  "    x: 4.0\n"
+  "    y: 4.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -154,8 +173,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
+    x: 668.0
+    y: 272.0
     z: 0.0
   }
   rotation {
@@ -165,8 +184,8 @@ embedded_instances {
     w: 1.0
   }
   scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 1.56
+    y: 1.56
+    z: 1.56
   }
 }

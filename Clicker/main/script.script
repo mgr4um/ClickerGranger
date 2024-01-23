@@ -1,0 +1,6 @@
+function on_message(self, message_id, message, sender)
+	if message_id == hash("actualizar_puntos") then
+		-- Actualiza el texto de la etiqueta con la puntuación recibida
+		gui.set_text(gui.get_node("#label"), "Puntos: " .. message.puntos)
+	end
+end

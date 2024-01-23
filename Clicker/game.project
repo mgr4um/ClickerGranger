@@ -15,5 +15,5 @@ input_method = HiddenInputField
 [project]
 title = My Project
 custom_resources = 
-dependencies#0 = https://url.to/library
+dependencies = 
 

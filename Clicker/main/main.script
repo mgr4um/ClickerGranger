@@ -1,52 +1,76 @@
 local puntos = 0
 local incremento = 1
 local temps = 1
+local cont_ani = 0
+local puntos_label = gui.get_node("#label")
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
 end
 
+function actualizar_puntos_gui()
+	msg.post("label#script", "actualizar_puntos", { puntos = puntos })
+end
+
 local function incrementar_puntos()
 	puntos = puntos + incremento
 	print("Puntos:", puntos)
-end
-
-local function incrementar()
-	incremento = incremento + 1
-	print("Incremento:", incremento)
+	actualizar_puntos_gui()
 end
 
 local function temporitzador()
-	print("Temporizador activado")
-	temps = temps + 1
-	timer.delay(1, true, function (self, handle, time_elapsed)
+	timer.delay(3, true, function (self, handle, time_elapsed)
 		puntos = puntos + temps
 		print("Puntos", puntos)
-	end)	
+	end)
+end
+
+local function animacio()
+	local animation_Cheer = hash("Cheer")
+	msg.post("/farmer#sprite", "play_animation", { id = animation_Cheer, playback_rate = 1, offset = 0 }, nil, 1)
+end
+
+local function idle()
+	local animation_Idle = hash("Idle")
+	msg.post("/farmer#sprite", "play_animation", { id = animation_Idle, playback_rate = 1, offset = 0 }, nil, 2)
 end
 
 function on_input(self, action_id, action)
 	if action_id == hash("touch") and action.pressed then
 		local x, y = action.x, action.y
 
+		print(x..y)
+
 		local farmer_position = go.get_world_position("/farmer#sprite")
 		local farmer_size = go.get("/farmer#sprite", "size")
-
-		local enciam_position = go.get_world_position("/enciam#sprite")
-		local enciam_size = go.get("/enciam#sprite", "size")
 
 		local pastanaga_position = go.get_world_position("/pastanaga#sprite")
 		local pastanaga_size = go.get("/pastanaga#sprite", "size")
 
+		if is_point_inside_pastanaga(x, y, pastanaga_position, pastanaga_size) then
+			
+			if puntos >= 10 then 
+				puntos = puntos - 10
+				gui.set_text(puntos_label, "Puntos: " .. puntos)
+				
+				temporitzador()
+				
+				if cont_ani == 0 then
+					animacio()
+					cont_ani = 1
+					timer.delay(1, false, function()
+						idle()
+						cont_ani = 0
+					end)
+				end
+				
+			end		
+		end 
+		
 		if is_point_inside_farmer(x, y, farmer_position, farmer_size) then
 			incrementar_puntos()
-			
-		elseif is_point_inside_enciam(x, y, enciam_position, enciam_size) then
-			incrementar()
-
-		elseif is_point_inside_pastanaga(x, y, pastanaga_position, pastanaga_size) then
-			temporitzador()
 		end
+		
 	end
 end
 
@@ -55,17 +79,8 @@ function is_point_inside_farmer(px, py, rect_position, rect_size)
 	local rect_right = rect_position.x + rect_size.x * 0.5
 	local rect_top = rect_position.y + rect_size.y * 0.5
 	local rect_bottom = rect_position.y - rect_size.y * 0.5
-
+	
 	return px >= rect_left and px <= rect_right and py >= rect_bottom and py <= rect_top
-end
-
-function is_point_inside_enciam(px_e, py_e, rect_position_e, rect_size_e)
-	local rect_left_e = rect_position_e.x - rect_size_e.x * 0.5
-	local rect_right_e = rect_position_e.x + rect_size_e.x * 0.5
-	local rect_top_e = rect_position_e.y + rect_size_e.y * 0.5
-	local rect_bottom_e = rect_position_e.y - rect_size_e.y * 0.5
-
-	return px_e >= rect_left_e and px_e <= rect_right_e and py_e >= rect_bottom_e and py_e <= rect_top_e
 end
 
 function is_point_inside_pastanaga(px_p, py_p, rect_position_p, rect_size_p)

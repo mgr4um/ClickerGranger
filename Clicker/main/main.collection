@@ -1,10 +1,13 @@
 name: "main"
 scale_along_z: 0
 embedded_instances {
-  id: "farmer"
+  id: "Central"
+  children: "enciam"
+  children: "farmer"
+  children: "pastanaga"
   data: "components {\n"
-  "  id: \"farmer\"\n"
-  "  component: \"/main/farmer.script\"\n"
+  "  id: \"main\"\n"
+  "  component: \"/main/main.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -19,7 +22,72 @@ embedded_instances {
   "  property_decls {\n"
   "  }\n"
   "}\n"
-  "embedded_components {\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "enciam"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/Assets/Verdura1.atlas\\\"\\n"
+  "default_animation: \\\"bok-choy-asian-vegetable-cartoon-drawing-png\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 166.0\n"
+  "    y: 77.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 0.0288\n"
+  "    y: 0.0288\n"
+  "    z: 0.0288\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 490.0
+    y: 303.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "farmer"
+  data: "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/Assets/Farmer.atlas\\\"\\n"
@@ -58,18 +126,18 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "enciam"
+  id: "pastanaga"
   data: "embedded_components {\n"
-  "  id: \"enciam\"\n"
+  "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/builtins/graphics/particle_blob.tilesource\\\"\\n"
-  "default_animation: \\\"anim\\\"\\n"
+  "  data: \"tile_set: \\\"/Assets/Verdura2.atlas\\\"\\n"
+  "default_animation: \\\"unnamed (1)\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
   "  position {\n"
-  "    x: 194.0\n"
-  "    y: 37.0\n"
+  "    x: 655.0\n"
+  "    y: 163.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -79,15 +147,15 @@ embedded_instances {
   "    w: 1.0\n"
   "  }\n"
   "  scale {\n"
-  "    x: 3.606381\n"
-  "    y: 3.887155\n"
-  "    z: 1.0\n"
+  "    x: 0.1056\n"
+  "    y: 0.1056\n"
+  "    z: 0.1056\n"
   "  }\n"
   "}\n"
   ""
   position {
-    x: 490.0
-    y: 303.0
+    x: 0.0
+    y: 0.0
     z: 0.0
   }
   rotation {
